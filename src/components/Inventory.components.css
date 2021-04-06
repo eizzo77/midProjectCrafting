@@ -1,0 +1,16 @@
+.inventory-list {
+  background: bisque;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 55%;
+  height: 90%;
+  border: black solid 1px;
+}
+
+.item {
+  background: #333;
+  margin: 2%;
+  width: 25%;
+  height: 20%;
+}

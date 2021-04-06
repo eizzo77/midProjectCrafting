@@ -1,0 +1,22 @@
+.craft-container {
+  position: absolute;
+  background: saddlebrown;
+  width: 80%;
+  height: 60%;
+}
+
+.craft-wrapper {
+  justify-content: space-evenly;
+  align-items: center;
+  display: flex;
+  height: 90%;
+  width: 100%;
+}
+
+.btn {
+  text-align: center;
+}
+
+button {
+  padding: 1% 10%;
+}

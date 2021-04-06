@@ -1,0 +1,26 @@
+.avatar-container {
+  background: bisque;
+  width: 40%;
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.avatar-logo {
+  width: 40%;
+  height: 30%;
+  border: 1px black solid;
+}
+
+.avatar-desc {
+  width: 90%;
+  height: 60%;
+  border: 1px solid black;
+}
+
+.materials-amount {
+  display: flex;
+  flex-direction: column;
+}

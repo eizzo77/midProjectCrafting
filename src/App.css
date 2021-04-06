@@ -1,42 +1,16 @@
+.background {
+  background-image: url("./assets/game-bg.jpg");
+  background-repeat: round;
+}
+
 .game-container {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
   margin: auto auto;
-  height: 90vh;
-  width: 90vh;
-  border: black solid 2px;
-}
-
-.craft-container {
-  background: saddlebrown;
-  justify-content: space-evenly;
-  align-items: center;
-  display: flex;
-  height: 60%;
-  width: 80%;
-}
-
-.weapons-list {
-  background: bisque;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  width: 55%;
-  height: 90%;
-  border: black solid 1px;
-}
-
-.item {
-  background: #333;
-  margin: 2%;
-  width: 25%;
-  height: 20%;
-}
-
-.weapon-avatar-container {
-  background: bisque;
-  width: 40%;
-  height: 90%;
+  height: 95vh;
+  width: 135vh;
+  border: black solid 5px;
+  background: url("./assets/world_map.jpg") no-repeat center center/cover;
 }
