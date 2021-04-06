@@ -1,32 +1,30 @@
-import React from "react";
+import {useEffect, useState} from "react";
 import {Inventory} from "./Inventory.components";
-import {Link, useLocation} from "react-router-dom";
 import {WeaponAvatar} from "./WeaponAvatar.components";
-import {craftingWeapons} from "../Data/Crafting_Weapons";
-import {Slot} from "./Slot.components";
 import "./CraftingPage.components.css";
 
-export const CraftingPage = () => {
+export const CraftingPage = ({character,setCharacter}) => {
 
-    const location = useLocation();
-    const renderedList = () => craftingWeapons.map(item => {
-        return (
-            <div className="item" key={item.id}>
-                <Link key={item.id} to={`/crafting/${item.id}`}><Slot key={item.id} image={item.imgURL}/></Link>
-            </div>
-        );
-    })
+    const [currentWeapon,setCurrentWeapon] = useState({});
+    const [shopperText,setShopperText] = useState("Welcome! Choose a Weapon you desire to craft!");
+
+    useEffect( ()=> {
+        console.log(currentWeapon);
+        setShopperText(`So you're interested in this weapon dont ya?`);
+    },[currentWeapon])
 
     return(
         <>
+        <div className="dialogue-avatar"></div>
+        <div className="dialogue-box">
+            <p>{shopperText}</p>
+        </div>
             <div className="craft-container">
                 <div className="craft-wrapper">
-                    <div className="inventory-list">
-                        {renderedList()}
-                    </div>
-                    <WeaponAvatar />
+                    <Inventory onItemClick={setCurrentWeapon}/>
+                    <WeaponAvatar character={character} currentWeapon={currentWeapon}/>
                 </div>
-                <div className="btn"><button>Craft</button></div>
+                <div className="btn"><button/></div>
             </div>
         </>
     );

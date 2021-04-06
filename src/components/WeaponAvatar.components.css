@@ -1,5 +1,5 @@
 .avatar-container {
-  background: bisque;
+  background: url("../assets/wrapper.png") no-repeat center center/contain;
   width: 40%;
   height: 90%;
   display: flex;
@@ -9,18 +9,23 @@
 }
 
 .avatar-logo {
+  background: url("../assets/avatar-pic.png") no-repeat center center/contain;
   width: 40%;
   height: 30%;
-  border: 1px black solid;
 }
 
 .avatar-desc {
+  background: url("../assets/avatar-desc.png") no-repeat center center/contain;
   width: 90%;
   height: 60%;
-  border: 1px solid black;
+  background-position: top;
 }
 
 .materials-amount {
   display: flex;
   flex-direction: column;
+}
+
+.required-materials {
+  margin: 5%;
 }

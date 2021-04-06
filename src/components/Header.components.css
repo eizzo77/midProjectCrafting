@@ -1,0 +1,7 @@
+button {
+  position: absolute;
+  background: red;
+  left: 50%;
+  top: 20%;
+  z-index: 5;
+}
