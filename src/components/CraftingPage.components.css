@@ -1,6 +1,6 @@
 .craft-container {
   position: absolute;
-  background: saddlebrown;
+  background: url("../assets/menu-bg.png") no-repeat center/contain;
   width: 80%;
   height: 60%;
 }
@@ -13,10 +13,39 @@
   width: 100%;
 }
 
+.dialogue-avatar {
+  background: url("../assets/crafting-dialogue.v1.png") no-repeat center/contain;
+  width: 25%;
+  height: 40%;
+  position: absolute;
+  bottom: 0%;
+  right: 5%;
+  z-index: 3;
+}
+
+.dialogue-box {
+  background: url("../assets//dialogue.png") no-repeat center/contain;
+  width: 50%;
+  height: 18%;
+  position: absolute;
+  bottom: 2%;
+  z-index: 5;
+  right: 17%;
+}
+
+.dialogue-box > p {
+  margin: 5% 0;
+  color: brown;
+  font-size: larger;
+  text-align: center;
+  word-wrap: break-word;
+}
+
 .btn {
   text-align: center;
 }
 
 button {
-  padding: 1% 10%;
+  background: url("../assets/craft-button.png") no-repeat center center/contain;
+  padding: 4% 10%;
 }

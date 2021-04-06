@@ -1,14 +1,14 @@
-import noviceHammer from "../assets/novice_hammer.png";
-import NoviceBow from "../assets/novice_bow.png";
-import championsSword from "../assets/champions_sword.png";
+import noviceHammer from "../assets/sword.png";
+import NoviceBow from "../assets/dagger.png";
+import championsSword from "../assets/axe.png";
 
 export const craftingWeapons = [
   {
     id: 1,
-    name: "Novice Hammer",
+    name: "Sword of the black Pearl",
     imgURL: noviceHammer,
     damage: 10,
-    effect: "Nothing",
+    abillity: "Fire",
     requiredMaterials: [
       {
         type: "wood",
@@ -24,10 +24,10 @@ export const craftingWeapons = [
   },
   {
     id: 2,
-    name: "Novice Bow",
+    name: "Hammer of the Storm",
     imgURL: NoviceBow,
     damage: 11,
-    effect: "7% chance of Critical Hit",
+    effect: "Thunder",
     requiredMaterials: [
       {
         type: "wood",
@@ -43,10 +43,10 @@ export const craftingWeapons = [
   },
   {
     id: 3,
-    name: "Champions Sword",
+    name: "Samuel Axe's",
     imgURL: championsSword,
     damage: 15,
-    effect: "15% chance of causing Burn",
+    effect: "Blizzard",
     requiredMaterials: [
       {
         type: "ore",

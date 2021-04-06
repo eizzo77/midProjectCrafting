@@ -1,16 +1,16 @@
 .inventory-list {
-  background: bisque;
+  background: url("../assets/wrapper.png") no-repeat center/contain;
+  background-size: contain;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  width: 55%;
+  width: 40%;
   height: 90%;
-  border: black solid 1px;
 }
 
 .item {
-  background: #333;
-  margin: 2%;
-  width: 25%;
-  height: 20%;
+  margin: 3%;
+  width: 20%;
+  height: 18%;
+  background: url("../assets/slot.png") no-repeat center/cover;
 }

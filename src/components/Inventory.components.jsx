@@ -1,16 +1,18 @@
 import React from "react";
-import {Link} from "react-router-dom";
 import {craftingWeapons} from "../Data/Crafting_Weapons";
 import {Slot} from "./Slot.components";
 import "./Inventory.components.css";
 
-export const Inventory = () => {
+const INVENTORY_CAPACITY = 12;
+
+export const Inventory = ({onItemClick}) => {
     
-    const renderedList = () => craftingWeapons.map(item => {
+    const renderedList = () => Array.from({length:INVENTORY_CAPACITY}).map((_,index) => {
         return (
-            <div className="item" key={item.id}>
-                <Link key={item.id} to={`/crafting/${item.id}`}><Slot key={item.id} image={item.imgURL}/></Link>
-            </div>
+            index < craftingWeapons.length ?
+            <div className="item" key={craftingWeapons[index].id} onClick={() => onItemClick(craftingWeapons[index])} >
+                    <Slot key={craftingWeapons[index].id} image={craftingWeapons[index].imgURL}/>
+            </div> : <div className="item" key={index+1}></div>
         );
     })
     

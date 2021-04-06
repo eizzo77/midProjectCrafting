@@ -1,3 +1,13 @@
+@font-face {
+  font-family: "Rpg-font";
+  src: url("./fonts/BreatheFire-65pg.ttf");
+}
+
+* {
+  font-family: "Rpg-font";
+  color: #f4f4f4;
+}
+
 .background {
   background-image: url("./assets/game-bg.jpg");
   background-repeat: round;

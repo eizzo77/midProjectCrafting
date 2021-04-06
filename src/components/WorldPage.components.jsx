@@ -4,35 +4,34 @@ import axios from "axios";
 import "./WorldPage.components.css";
 
 let currentID = 1;
-export const WorldPage = (props) => {
-    console.log(props);
-    const [character, setCharacter] = useState({});
+export const WorldPage = ({character,setCharacter}) => {
+    // const [character, setCharacter] = useState({});
     const [materials,setMaterials] = useState([]);
     const worldref = useRef()
     const materialRef = useRef([]);
 
-    useEffect(() => {
-        const fetchData = async () => {
-          const data = await axios.get(
-            `https://605cf2c16d85de00170db556.mockapi.io/Character/1`
-          );
-          const characterData = data.data;
-          if (!characterData.hasOwnProperty("status")) {
-            const baseStatus = {
-              damage: 5,
-              hp: 20,
-              mp: 20,
-            };
-            characterData.status = baseStatus;
-            await axios.put(
-              "https://605cf2c16d85de00170db556.mockapi.io/Character/1",
-              characterData
-            );
-          }
-          setCharacter(characterData);
-        };
-        character && fetchData();
-      }, []);
+    // useEffect(() => {
+    //     const fetchData = async () => {
+    //       const data = await axios.get(
+    //         `https://605cf2c16d85de00170db556.mockapi.io/Character/1`
+    //       );
+    //       const characterData = data.data;
+    //       if (!characterData.hasOwnProperty("status")) {
+    //         const baseStatus = {
+    //           damage: 5,
+    //           hp: 20,
+    //           mp: 20,
+    //         };
+    //         characterData.status = baseStatus;
+    //         await axios.put(
+    //           "https://605cf2c16d85de00170db556.mockapi.io/Character/1",
+    //           characterData
+    //         );
+    //       }
+    //       setCharacter(characterData);
+    //     };
+    //     character && fetchData();
+    //   }, []);
 
     useEffect( ()=> {
         const toId = setTimeout(()=> {
@@ -51,6 +50,7 @@ export const WorldPage = (props) => {
 
 
     const onMaterialClick = async (id) => {
+        console.log(materials);
         const {materialData} = materials.find(m => m.id === id);
         const addMaterial = character.materials[materialData.type] ? 
         {...materialData, amount:character.materials[materialData.type].amount + materialData.amount} : {...materialData};
@@ -71,8 +71,8 @@ export const WorldPage = (props) => {
     return(
         <div ref={worldref} className="world-container">
             {renderedMaterials()}
-            {/* {console.log(materials)}
-            {console.log(character)} */}
+            {/* { {console.log(materials)} */}
+            {console.log(character)}
 
         </div>
     );
