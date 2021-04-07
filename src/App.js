@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { CraftingPage } from "./components/CraftingPage.components";
 import { WorldPage } from "./components/WorldPage.components";
 import { BrowserRouter, Route, Switch, useHistory } from "react-router-dom";
-import { WeaponAvatar } from "./components/WeaponAvatar.components";
+import { InventoryPage } from "./components/InventoryPage.components";
 import { Header } from "./components/Header.components";
 import axios from "axios";
 import "./App.css";
@@ -49,6 +49,11 @@ export const App = () => {
                   setCharacter={setCharacter}
                 />
               )}
+            />
+            <Route
+              path="/inventory"
+              exact
+              component={() => <InventoryPage character={character} />}
             />
           </Switch>
         </BrowserRouter>

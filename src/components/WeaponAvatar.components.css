@@ -18,14 +18,23 @@
   background: url("../assets/avatar-desc.png") no-repeat center center/contain;
   width: 90%;
   height: 60%;
+  text-align: center;
   background-position: top;
 }
 
 .materials-amount {
-  display: flex;
-  flex-direction: column;
+  display: inline;
+}
+
+.material-req {
+  display: inline;
+  height: 10%;
+  width: 10%;
+  margin: 0;
 }
 
 .required-materials {
+  display: flex;
+  flex-direction: column;
   margin: 5%;
 }

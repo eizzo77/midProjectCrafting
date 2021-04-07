@@ -4,7 +4,7 @@ import {Link} from "react-router-dom";
 export const Header = () => {
     return(
         <>
-        {/* <Link to="/crafting"> <button type="button">Craft</button> </Link> */}
+        <Link to="/inventory"> <button type="button">Inventory</button> </Link>
         </>
     );
 }

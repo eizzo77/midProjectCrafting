@@ -1,17 +1,14 @@
 import React from "react";
-import {craftingWeapons} from "../Data/Crafting_Weapons";
 import {Slot} from "./Slot.components";
 import "./Inventory.components.css";
 
-const INVENTORY_CAPACITY = 12;
-
-export const Inventory = ({onItemClick}) => {
+export const Inventory = ({onItemClick, inventoryCapacity,itemsList}) => {
     
-    const renderedList = () => Array.from({length:INVENTORY_CAPACITY}).map((_,index) => {
+    const renderedList = () => Array.from({length:inventoryCapacity}).map((_,index) => {
         return (
-            index < craftingWeapons.length ?
-            <div className="item" key={craftingWeapons[index].id} onClick={() => onItemClick(craftingWeapons[index])} >
-                    <Slot key={craftingWeapons[index].id} image={craftingWeapons[index].imgURL}/>
+            index < itemsList.length ?
+            <div className="item" key={itemsList[index].id} onClick={onItemClick ? () => onItemClick(itemsList[index]):null} >
+                    <Slot key={itemsList[index].id} element={itemsList[index]} />
             </div> : <div className="item" key={index+1}></div>
         );
     })
@@ -19,6 +16,7 @@ export const Inventory = ({onItemClick}) => {
     return(
         <>
         <div className="inventory-list">
+            {console.log(itemsList)}
             {renderedList()}
         </div>
         </>

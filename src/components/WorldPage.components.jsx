@@ -5,33 +5,9 @@ import "./WorldPage.components.css";
 
 let currentID = 1;
 export const WorldPage = ({character,setCharacter}) => {
-    // const [character, setCharacter] = useState({});
     const [materials,setMaterials] = useState([]);
     const worldref = useRef()
     const materialRef = useRef([]);
-
-    // useEffect(() => {
-    //     const fetchData = async () => {
-    //       const data = await axios.get(
-    //         `https://605cf2c16d85de00170db556.mockapi.io/Character/1`
-    //       );
-    //       const characterData = data.data;
-    //       if (!characterData.hasOwnProperty("status")) {
-    //         const baseStatus = {
-    //           damage: 5,
-    //           hp: 20,
-    //           mp: 20,
-    //         };
-    //         characterData.status = baseStatus;
-    //         await axios.put(
-    //           "https://605cf2c16d85de00170db556.mockapi.io/Character/1",
-    //           characterData
-    //         );
-    //       }
-    //       setCharacter(characterData);
-    //     };
-    //     character && fetchData();
-    //   }, []);
 
     useEffect( ()=> {
         const toId = setTimeout(()=> {
@@ -54,7 +30,6 @@ export const WorldPage = ({character,setCharacter}) => {
         const {materialData} = materials.find(m => m.id === id);
         const addMaterial = character.materials[materialData.type] ? 
         {...materialData, amount:character.materials[materialData.type].amount + materialData.amount} : {...materialData};
-        // console.log(`sum is ${character.materials[materialData.type].amount + materialData.amount}`);
         const upgChar = await axios.put("https://605cf2c16d85de00170db556.mockapi.io/Character/1",{...character, materials: {...character.materials,[materialData.type]: addMaterial}});
         setCharacter(upgChar.data);
         const _materials = materials.filter(m => m.id !== id);
@@ -64,7 +39,7 @@ export const WorldPage = ({character,setCharacter}) => {
     const renderedMaterials = () => {
         return materials.map((material) => {
             return <div key={material.id} ref={materialRef[material.id % 8]} onClick={() => onMaterialClick(material.id)} className="material" 
-            style={{top:material.top,left:material.left, cursor:"pointer"}}>{material.materialData.type}</div>
+            style={{top:material.top,left:material.left, cursor:"pointer"}}><img src={material.materialData.imgURL}/></div>
         })
     }
 

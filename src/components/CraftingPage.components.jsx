@@ -1,4 +1,6 @@
 import {useEffect, useState} from "react";
+import axios from "axios";
+import {craftingWeapons} from "../Data/Crafting_Weapons";
 import {Inventory} from "./Inventory.components";
 import {WeaponAvatar} from "./WeaponAvatar.components";
 import "./CraftingPage.components.css";
@@ -10,8 +12,37 @@ export const CraftingPage = ({character,setCharacter}) => {
 
     useEffect( ()=> {
         console.log(currentWeapon);
-        setShopperText(`So you're interested in this weapon dont ya?`);
+        return () => setShopperText(`So you're interested in this weapon aren't ya?`);
     },[currentWeapon])
+
+    const onCraftClick = async () => {
+        if (currentWeapon.requiredMaterials.every(material => character.materials[material.type].amount >= material.amount)) {
+            console.log("can craft");
+            const addWeapon = [...character.weapons,currentWeapon];
+            const res = await axios.put(`https://605cf2c16d85de00170db556.mockapi.io/Character/${character.id}`,{...character,weapons:addWeapon});
+            console.log(res);
+            const copiedChar = res.data;
+            currentWeapon.requiredMaterials.forEach(material => copiedChar.materials[material.type].amount -= material.amount);
+            setCharacter(copiedChar);
+            setShopperText("Nice pick. that's my fav' one")
+
+        } else {
+            setShopperText("Seems like you don't have enough materials!");
+        }
+    }
+
+    const renderRequiredMaterials = () => {
+        return currentWeapon["requiredMaterials"].map(material => {
+            const charMaterialAmount = character.materials.hasOwnProperty(material.type) ? character.materials[material.type].amount : 0;
+            const requiredMaterialAmount = material.amount;
+            return <span key={material.id}>
+                <img className="material-req" src={material.imgURL}/>
+                <label style={{color:charMaterialAmount >= requiredMaterialAmount ? "green" : "red"}}>
+                    {charMaterialAmount}/{requiredMaterialAmount}
+                </label>
+                </span>
+        })
+    }
 
     return(
         <>
@@ -21,10 +52,11 @@ export const CraftingPage = ({character,setCharacter}) => {
         </div>
             <div className="craft-container">
                 <div className="craft-wrapper">
-                    <Inventory onItemClick={setCurrentWeapon}/>
-                    <WeaponAvatar character={character} currentWeapon={currentWeapon}/>
+                    <Inventory onItemClick={setCurrentWeapon} itemsList={craftingWeapons} inventoryCapacity={12}/>
+                    <WeaponAvatar character={character} currentWeapon={currentWeapon} renderRequiredMaterials={renderRequiredMaterials}/>
+                    {console.log(character)}
                 </div>
-                <div className="btn"><button/></div>
+                <div className="btn"><button onClick={() => onCraftClick()}/></div>
             </div>
         </>
     );

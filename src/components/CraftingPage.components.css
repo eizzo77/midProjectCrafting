@@ -48,4 +48,5 @@
 button {
   background: url("../assets/craft-button.png") no-repeat center center/contain;
   padding: 4% 10%;
+  cursor: pointer;
 }
