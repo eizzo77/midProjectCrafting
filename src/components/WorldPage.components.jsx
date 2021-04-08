@@ -26,7 +26,6 @@ export const WorldPage = ({character,setCharacter}) => {
 
 
     const onMaterialClick = async (id) => {
-        console.log(materials);
         const {materialData} = materials.find(m => m.id === id);
         const addMaterial = character.materials[materialData.type] ? 
         {...materialData, amount:character.materials[materialData.type].amount + materialData.amount} : {...materialData};

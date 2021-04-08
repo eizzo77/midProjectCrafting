@@ -3,6 +3,7 @@ import axios from "axios";
 import {craftingWeapons} from "../Data/Crafting_Weapons";
 import {Inventory} from "./Inventory.components";
 import {WeaponAvatar} from "./WeaponAvatar.components";
+import {Link} from "react-router-dom";
 import "./CraftingPage.components.css";
 
 export const CraftingPage = ({character,setCharacter}) => {
@@ -17,14 +18,13 @@ export const CraftingPage = ({character,setCharacter}) => {
 
     const onCraftClick = async () => {
         if (currentWeapon.requiredMaterials.every(material => character.materials[material.type].amount >= material.amount)) {
-            console.log("can craft");
+            setShopperText("Nice pick. that's my fav' one")
             const addWeapon = [...character.weapons,currentWeapon];
             const res = await axios.put(`https://605cf2c16d85de00170db556.mockapi.io/Character/${character.id}`,{...character,weapons:addWeapon});
             console.log(res);
             const copiedChar = res.data;
             currentWeapon.requiredMaterials.forEach(material => copiedChar.materials[material.type].amount -= material.amount);
             setCharacter(copiedChar);
-            setShopperText("Nice pick. that's my fav' one")
 
         } else {
             setShopperText("Seems like you don't have enough materials!");
@@ -51,9 +51,10 @@ export const CraftingPage = ({character,setCharacter}) => {
             <p>{shopperText}</p>
         </div>
             <div className="craft-container">
+                <Link to="/"><div className="exit"><i class="fas fa-times-circle"></i></div></Link>
                 <div className="craft-wrapper">
                     <Inventory onItemClick={setCurrentWeapon} itemsList={craftingWeapons} inventoryCapacity={12}/>
-                    <WeaponAvatar character={character} currentWeapon={currentWeapon} renderRequiredMaterials={renderRequiredMaterials}/>
+                    <WeaponAvatar currentData={currentWeapon} renderRequiredMaterials={renderRequiredMaterials}/>
                     {console.log(character)}
                 </div>
                 <div className="btn"><button onClick={() => onCraftClick()}/></div>

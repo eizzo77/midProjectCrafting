@@ -1,17 +1,18 @@
 import {Inventory} from "./Inventory.components";
 import {WeaponAvatar} from "./WeaponAvatar.components";
+import {Link} from "react-router-dom";
 import "./InventoryPage.components.css";
 export const InventoryPage = ({character}) => {
 
     return(
         <>
             <div className="inventory-container">
+            <Link to="/"><div className="exit"><i class="fas fa-times-circle"></i></div></Link>
                 <div className="inv-wrapper">
                     <div className="inventory-wrapper">
-                        {console.log(character)}
-                        <Inventory itemsList={Object.values(character.materials)} inventoryCapacity={12} hasCounts={true}/>  
-                        <Inventory itemsList={Object.values(character.weapons)} inventoryCapacity={12} hasCounts={true}/>
-                        <WeaponAvatar />
+                        <Inventory itemsList={Object.values(character.materials)} inventoryCapacity={12}/>  
+                        <Inventory itemsList={Object.values(character.weapons)} inventoryCapacity={12}/>
+                        <WeaponAvatar currentData={character} />
                     </div>
                 </div>
             </div>

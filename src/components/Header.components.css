@@ -1,7 +1,22 @@
-button {
+.inv-button {
   position: absolute;
-  background: red;
-  left: 50%;
-  top: 20%;
-  z-index: 5;
+  background: url("../assets/inventory-button.png") no-repeat center/contain;
+  height: 15%;
+  width: 20%;
+  top: 0;
+  z-index: 8;
+  border: none;
+  cursor: pointer;
+}
+
+.menu-1 {
+  right: 2%;
+}
+
+.menu-2 {
+  left: 2%;
+}
+
+.button-text {
+  font-size: xx-large;
 }

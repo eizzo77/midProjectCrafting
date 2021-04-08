@@ -45,8 +45,16 @@
   text-align: center;
 }
 
-button {
+.btn > button {
   background: url("../assets/craft-button.png") no-repeat center center/contain;
   padding: 4% 10%;
+  cursor: pointer;
+}
+
+.exit {
+  position: absolute;
+  right: 1%;
+  width: 50;
+  font-size: x-large;
   cursor: pointer;
 }
