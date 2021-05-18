@@ -4,20 +4,23 @@ import {craftingWeapons} from "../Data/Crafting_Weapons";
 import {Inventory} from "./Inventory.components";
 import {WeaponAvatar} from "./WeaponAvatar.components";
 import {Link} from "react-router-dom";
+import CraftEffectURL from "../sounds/craft.mp3";
 import "./CraftingPage.components.css";
 
 export const CraftingPage = ({character,setCharacter}) => {
 
     const [currentWeapon,setCurrentWeapon] = useState({});
     const [shopperText,setShopperText] = useState("Welcome! Choose a Weapon you desire to craft!");
+    const [craftEffect] = useState(new Audio(CraftEffectURL))
+
 
     useEffect( ()=> {
-        console.log(currentWeapon);
         return () => setShopperText(`So you're interested in this weapon aren't ya?`);
     },[currentWeapon])
 
     const onCraftClick = async () => {
         if (currentWeapon.requiredMaterials.every(material => character.materials[material.type].amount >= material.amount)) {
+            craftEffect.play();
             setShopperText("Nice pick. that's my fav' one")
             const addWeapon = [...character.weapons,currentWeapon];
             const res = await axios.put(`https://605cf2c16d85de00170db556.mockapi.io/Character/${character.id}`,{...character,weapons:addWeapon});
@@ -50,12 +53,11 @@ export const CraftingPage = ({character,setCharacter}) => {
         <div className="dialogue-box">
             <p>{shopperText}</p>
         </div>
-            <div className="craft-container">
+            <div className={"craft-container slide-in-top"}>
                 <Link to="/"><div className="exit"><i class="fas fa-times-circle"></i></div></Link>
                 <div className="craft-wrapper">
                     <Inventory onItemClick={setCurrentWeapon} itemsList={craftingWeapons} inventoryCapacity={12}/>
                     <WeaponAvatar currentData={currentWeapon} renderRequiredMaterials={renderRequiredMaterials}/>
-                    {console.log(character)}
                 </div>
                 <div className="btn"><button onClick={() => onCraftClick()}/></div>
             </div>

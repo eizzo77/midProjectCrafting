@@ -9,8 +9,14 @@
 }
 
 .item {
+  position: relative;
   margin: 3%;
   width: 20%;
   height: 18%;
   background: url("../assets/slot.png") no-repeat center/cover;
+}
+
+.item > i {
+  position: absolute;
+  top: 0;
 }
