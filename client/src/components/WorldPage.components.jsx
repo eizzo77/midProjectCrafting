@@ -4,6 +4,7 @@ import axios from "axios";
 import CollectEffect from "../sounds/collect.mp3";
 import "./WorldPage.components.css";
 
+const endPoint = "http://localhost:5555";
 const MaterialsLength = 8;
 let currentID = 1;
 
@@ -41,7 +42,7 @@ export const WorldPage = ({character,setCharacter}) => {
         const {materialData} = materials.find(m => m.id === material.id);
         const addMaterial = character.materials[materialData.type] ? 
         {...materialData, amount:character.materials[materialData.type].amount + materialData.amount} : {...materialData};
-        const upgChar = await axios.put("https://605cf2c16d85de00170db556.mockapi.io/Character/1",{...character, materials: {...character.materials,[materialData.type]: addMaterial}});
+        const upgChar = await axios.put(endPoint + "/api/character",{...character, materials: {...character.materials,[materialData.type]: addMaterial}});
         setCharacter(upgChar.data);
         const _materials = materials.filter(m => m.id !== material.id);
         setMaterials(_materials);

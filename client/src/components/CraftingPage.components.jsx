@@ -7,6 +7,8 @@ import {Link} from "react-router-dom";
 import CraftEffectURL from "../sounds/craft.mp3";
 import "./CraftingPage.components.css";
 
+const endPoint = "http://localhost:5555";
+
 export const CraftingPage = ({character,setCharacter}) => {
 
     const [currentWeapon,setCurrentWeapon] = useState({});
@@ -21,13 +23,12 @@ export const CraftingPage = ({character,setCharacter}) => {
     const onCraftClick = async () => {
         if (currentWeapon.requiredMaterials.every(material => character.materials[material.type].amount >= material.amount)) {
             craftEffect.play();
-            setShopperText("Nice pick. that's my fav' one")
             const addWeapon = [...character.weapons,currentWeapon];
-            const res = await axios.put(`https://605cf2c16d85de00170db556.mockapi.io/Character/${character.id}`,{...character,weapons:addWeapon});
-            console.log(res);
-            const copiedChar = res.data;
+            const copiedChar = {...character,weapons:addWeapon}
             currentWeapon.requiredMaterials.forEach(material => copiedChar.materials[material.type].amount -= material.amount);
+            const res = await axios.put(endPoint + "/api/character",{...copiedChar});
             setCharacter(copiedChar);
+            setShopperText("Nice pick. that's my fav' one")
 
         } else {
             setShopperText("Seems like you don't have enough materials!");

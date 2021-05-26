@@ -2,7 +2,6 @@
   "name": "MidProj",
   "version": "0.1.0",
   "private": true,
-  "proxy":"https://localhost:5555",
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/react": "^11.2.5",
@@ -18,7 +17,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "cd client && react-scripts build",
     "dev": "concurrently \"cd client && npm start\" \"cd server && nodemon ./index.js\"",
     "install-client": "cd client && npm install",
     "start-client": " cd client/src && npm start",

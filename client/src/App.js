@@ -7,13 +7,15 @@ import { Header } from "./components/Header.components";
 import axios from "axios";
 import "./App.css";
 
+const endPoint = "http://localhost:5555";
 export const App = () => {
   const [character, setCharacter] = useState({});
 
   useEffect(() => {
     const fetchData = async () => {
-      const charResponse = await axios.get(`/api/character`);
-      const characterData = charResponse.data;
+      const charResponse = await axios.get(endPoint + "/api/character");
+      const characterData = charResponse.data[0];
+      console.log(characterData);
       if (!characterData.hasOwnProperty("status")) {
         const baseStatus = {
           damage: 5,
@@ -21,10 +23,8 @@ export const App = () => {
           mp: 20,
         };
         characterData.status = baseStatus;
-        await axios.put(
-          "https://605cf2c16d85de00170db556.mockapi.io/Character/1",
-          characterData
-        );
+        characterData.materials = {};
+        await axios.put(endPoint + "/api/character", characterData);
       }
       setCharacter(characterData);
     };

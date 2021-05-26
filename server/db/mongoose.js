@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 mongoose
   .connect(
-    "mongodb+srv://ItayZaguri:togZzih3VqZBqthG@cluster0.3gnvx.mongodb.net/Rpg-Game?retryWrites=true&w=majority",
+    "mongodb+srv://ItayZaguri:togZzih3VqZBqthG@cluster0.3gnvx.mongodb.net/Game-Data?retryWrites=true&w=majority",
     {
       useNewUrlParser: true,
       useCreateIndex: true,
