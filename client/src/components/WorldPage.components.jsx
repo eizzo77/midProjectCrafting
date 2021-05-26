@@ -4,13 +4,13 @@ import axios from "axios";
 import CollectEffect from "../sounds/collect.mp3";
 import "./WorldPage.components.css";
 
-const MaterialsLength = 8; 
+const MaterialsLength = 8;
 let currentID = 1;
 
 export const WorldPage = ({character,setCharacter}) => {
     const [materials,setMaterials] = useState([]);
     const worldref = useRef()
-    const [collectAudio] = useState(new Audio(CollectEffect));
+    const [collectAudio,setCollectAudio] = useState(new Audio(CollectEffect));
     const [fadeOut,setFadeOut] = useState("fade-out");
 
     useEffect( ()=> {

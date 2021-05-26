@@ -12,10 +12,8 @@ export const App = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await axios.get(
-        `https://605cf2c16d85de00170db556.mockapi.io/Character/1`
-      );
-      const characterData = data.data;
+      const charResponse = await axios.get(`/api/character`);
+      const characterData = charResponse.data;
       if (!characterData.hasOwnProperty("status")) {
         const baseStatus = {
           damage: 5,
