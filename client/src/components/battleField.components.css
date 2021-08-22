@@ -1,0 +1,7 @@
+.battle-container {
+  position: absolute;
+  background: url("../assets/forest-background.png") no-repeat center
+    center/cover;
+  height: 100%;
+  width: 100%;
+}

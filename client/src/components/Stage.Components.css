@@ -1,0 +1,17 @@
+.stage {
+  position: absolute;
+  background: url("../assets/Stage.png") no-repeat center/contain;
+  width: 100px;
+  height: 100px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.stage:hover {
+  transform: scale(1.2, 1.2);
+}
+
+#stage-1 {
+  left: 60%;
+  top: 50%;
+}

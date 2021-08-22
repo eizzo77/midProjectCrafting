@@ -3,6 +3,7 @@ import {MaterialsData} from "../Data/Materials";
 import axios from "axios";
 import CollectEffect from "../sounds/collect.mp3";
 import "./WorldPage.components.css";
+import { Stage } from "./Stage.Components";
 
 const endPoint = "http://localhost:5555";
 const MaterialsLength = 8;
@@ -37,7 +38,7 @@ export const WorldPage = ({character,setCharacter}) => {
 
 
     const onMaterialClick = async (material,e) => {
-        collectAudio.play();
+        // collectAudio.play();
         e.currentTarget.classList.add("swirl-out-bck");
         const {materialData} = materials.find(m => m.id === material.id);
         const addMaterial = character.materials[materialData.type] ? 
@@ -59,6 +60,7 @@ export const WorldPage = ({character,setCharacter}) => {
         <div ref={worldref} className={`world-container ${fadeOut}`}>
             {renderedMaterials()}
             {console.log(character)}
+            <Stage />
 
         </div>
     );

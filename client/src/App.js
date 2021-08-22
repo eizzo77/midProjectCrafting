@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { CraftingPage } from "./components/CraftingPage.components";
 import { WorldPage } from "./components/WorldPage.components";
+import { BattleField } from "./components/battleField.components";
 import { BrowserRouter, Route, Switch, useHistory } from "react-router-dom";
 import { InventoryPage } from "./components/InventoryPage.components";
 import { Header } from "./components/Header.components";
@@ -52,6 +53,11 @@ export const App = () => {
               path="/inventory"
               exact
               component={() => <InventoryPage character={character} />}
+            />
+            <Route
+              path="/battle"
+              exact
+              component={() => <BattleField character={character} />}
             />
           </Switch>
         </BrowserRouter>
